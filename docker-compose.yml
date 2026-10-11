@@ -9,7 +9,13 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - portainer_data:/data
+    networks:
+      - npm_network
 
 volumes:
   portainer_data:
+    external: true
+
+networks:
+  npm_network:
     external: true
