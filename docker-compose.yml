@@ -3,9 +3,10 @@ services:
     image: portainer/portainer-ce:latest
     container_name: portainer
     restart: always
-    ports:
-      - "8000:8000"
-      - "9443:9443"
+    # Sem "ports": o acesso e so por portainer.vh2c.com.br, via Nginx Proxy Manager
+    # (portainer:9443 na rede npm_network). Publicar 9443 e 8000 no host expunha o
+    # painel e o tunel de agentes edge direto na internet, fora do ufw.
+    # A 8000 so serve a agentes Portainer Edge; nao ha agente edge conhecido neste ambiente.
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - portainer_data:/data
